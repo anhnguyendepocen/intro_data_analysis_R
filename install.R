@@ -1,0 +1,5 @@
+install.packages(c("devtools", "selectr", "aod", "plm"))
+library(devtools)
+install_github('ramnathv/rCharts@dev')
+install_github('ramnathv/rMaps')
+install_github("choroplethr", "trulia")
