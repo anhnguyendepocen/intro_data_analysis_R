@@ -1,0 +1,75 @@
+---
+title       : Introduction to Data Analysis with R
+subtitle    : UCI Data Science Initiative
+author      : Sepehr Akhavan, Homer Strong, Christine Lee
+job         : Dept. of Statistics
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : mathjax            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+github:
+  user: UCIDataScienceInitiative
+  repo: intro_data_analysis_R
+
+---
+
+## What is R?
++ a programming language
++ but also, an 'environment'
+  + package manager, Comprehensive R Archive Network (CRAN)
+  + command-line interface
+  + builtin-graphics
++ ~20 years old
++ traditionally academic, increasingly industrial
++ free and open source!
+
+---
+
+## vs. other languages
+
++ Most similar to python and matlab
+  + vs. matlab: R is free
+  + vs. python (+numpy, scipy, etc): R is already specialized
++ moved from 30th most popular programming language to 20th in the last year [1]
++ most other languages (java, C, JavaScript, ...) arguably not well suited to interactive data analysis
+
+[1] http://www.tiobe.com/index.php/content/paperinfo/tpci/index.html
+
+---
+
+## R is probably best when...
++ want to use research-grade statistical methods
++ dynamic/generated reports or paper
++ publication-quality graphics (ggplot2, visualization)
++ create interactive dashboards (shiny)
++ exploratory analysis
+  + filtering
+  + aggregation
+
+---
+
+## Downsides to R
++ large installation
++ not good for "backend" programming or long-running services
++ difficulties when data does not fit in-memory
++ namespacing makes large programs difficult to organize
++ learning curve
++ not terribly fast
+  + largely written by academic statisticians
+
+---
+## R vs. Excel
+
++ reproducing work
++ troubleshooting
++ sharing work
++ organizing project
++ flexibility
+
+---
+## Summary: why use R?
++ free, open source
++ many high-quality, cutting edge tools
++ covers many data analysis use cases
