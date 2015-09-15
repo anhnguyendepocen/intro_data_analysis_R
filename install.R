@@ -1,4 +1,4 @@
-install.packages(c("devtools", "selectr", "aod", "plm", "ggplot2"))
+install.packages(c("devtools", "selectr", "aod", "plm", "ggplot2", "base64enc"))
 library(devtools)
 install_github('ramnathv/rCharts@dev', dependencies=TRUE)
 install_github('ramnathv/rMaps', dependencies=TRUE)
