@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Introduction to Data Analysis with R</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Introduction to Data Analysis with R">
+  <meta name="author" content="Sepehr Akhavan, Homer Strong, Christine Lee">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Introduction to Data Analysis with R</h1>
+    <h2>UCI Data Science Initiative</h2>
+    <p>Sepehr Akhavan, Homer Strong, Christine Lee<br/>Dept. of Statistics</p>
+  </hgroup>
+    <a href="https://github.com/UCIDataScienceInitiative/intro_data_analysis_R/zipball/gh-pages" class="example">
+     Download
+    </a>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>What is R?</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>a programming language</li>
+<li>but also, an &#39;environment&#39;
+
+<ul>
+<li>package manager, Comprehensive R Archive Network (CRAN)</li>
+<li>command-line interface</li>
+<li>builtin-graphics</li>
+</ul></li>
+<li>~20 years old</li>
+<li>traditionally academic, increasingly industrial</li>
+<li>free and open source!</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>vs. other languages</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Most similar to python and matlab
+
+<ul>
+<li>vs. matlab: R is free</li>
+<li>vs. python (+numpy, scipy, etc): R is already specialized</li>
+</ul></li>
+<li>moved from 30th most popular programming language to 20th in the last year [1]</li>
+<li>most other languages (java, C, JavaScript, ...) arguably not well suited to interactive data analysis</li>
+</ul>
+
+<p>[1] <a href="http://www.tiobe.com/index.php/content/paperinfo/tpci/index.html">http://www.tiobe.com/index.php/content/paperinfo/tpci/index.html</a></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>R is probably best when...</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>want to use research-grade statistical methods</li>
+<li>dynamic/generated reports or paper</li>
+<li>pubication-quality graphics (ggplot2, visualization)</li>
+<li>create interactive dashboards (shiny)</li>
+<li>exploratory analysis
+
+<ul>
+<li>filtering</li>
+<li>aggregation</li>
+</ul></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Downsides to R</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>large installation</li>
+<li>not good for &quot;backend&quot; programming or long-running services</li>
+<li>difficulties when data does not fit in-memory</li>
+<li>namespacing makes large programs difficult to organize</li>
+<li>learning curve</li>
+<li>not terribly fast
+
+<ul>
+<li>largely written by academic statisticians</li>
+</ul></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h2>R vs. Excel</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>reproducing work</li>
+<li>troubleshooting</li>
+<li>sharing work</li>
+<li>organizing project</li>
+<li>flexability</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-6" style="background:;">
+  <hgroup>
+    <h2>Summary: why use R?</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>free, open source</li>
+<li>many high-quality, cutting edge tools</li>
+<li>covers many data analysis use cases</li>
+</ul>
+
+<h2>Session 5 - Agenda</h2>
+
+<ul>
+<li>Goal: use ggplot2 to explore data afterwards</li>
+<li>Emphasize simple examples</li>
+<li>Emphasize principles</li>
+<li>Some examples will be developed today</li>
+<li class='..'>but there&#39;s a lot that won&#39;t be covered</li>
+<li>Base plotting system</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-7" style="background:;">
+  <hgroup>
+    <h3>Information Visualization</h3>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Efficiency</li>
+<li>Interpretability</li>
+<li>Parsimony</li>
+<li>ggplot2 lies in &quot;sweet spot&quot; of functionality</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-8" style="background:;">
+  <hgroup>
+    <h3>Hello, ggplot2</h3>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>ggplot2 is a very popular graphics system written by Hadley Wickham</li>
+<li>implementation of Leland Wilkinson&#39; Grammar of Graphics</li>
+<li>I&#39;ll use the <code>diamonds</code> dataset for most of the examples.</li>
+</ul>
+
+<pre><code class="r">head(diamonds)
+</code></pre>
+
+<pre><code>## Error in head(diamonds): object &#39;diamonds&#39; not found
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-9" style="background:;">
+  <hgroup>
+    <h3>First ggplot2: histogram</h3>
+  </hgroup>
+  <article data-timings="">
+    <p>Let&#39;s make a histogram!</p>
+
+<pre><code class="r">ggplot(diamonds, aes(price)) + geom_histogram()
+</code></pre>
+
+<pre><code>## Error in eval(expr, envir, enclos): could not find function &quot;ggplot&quot;
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-10" style="background:;">
+  <hgroup>
+    <h3>Gotchas</h3>
+  </hgroup>
+  <article data-timings="">
+    <p>Easy to run into unhelpful errors</p>
+
+<pre><code class="r">library(ggplot2)
+ggplot(airquality) # :(
+</code></pre>
+
+<pre><code>## Error: No layers in plot
+</code></pre>
+
+<pre><code class="r">ggplot(airquality, aes(temp)) # :&#39;&#39;&#39;(
+</code></pre>
+
+<pre><code>## Error: No layers in plot
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-11" style="background:;">
+  <hgroup>
+    <h3>Now make it fancier</h3>
+  </hgroup>
+  <article data-timings="">
+    <p>Group diamonds by cut.</p>
+
+<pre><code class="r">m &lt;- ggplot(diamonds, aes(price))
+m + geom_histogram(aes(fill=cut))
+</code></pre>
+
+<pre><code>## stat_bin: binwidth defaulted to range/30. Use &#39;binwidth = x&#39; to adjust this.
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-4-1.png" alt="plot of chunk unnamed-chunk-4"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-12" style="background:;">
+  <hgroup>
+    <h3>Facets are an alternative</h3>
+  </hgroup>
+  <article data-timings="">
+    <p>Group diamonds by cut.</p>
+
+<pre><code class="r">m &lt;- ggplot(diamonds, aes(price))
+m + geom_histogram(binwidth=100) + facet_grid(cut~color)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-5-1.png" alt="plot of chunk unnamed-chunk-5"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-13" style="background:;">
+  <hgroup>
+    <h3>Let&#39;s pause for a moment</h3>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>what&#39;s up with <code>aes</code>?</li>
+<li><code>aes(x, y, ...)</code></li>
+<li>allows functions of columns e.g. <code>aes(x=price^2)</code>, <code>aes(x=price/carat)</code></li>
+<li>what are layers?</li>
+</ul>
+
+<pre><code>m &lt;- ggplot(diamonds, aes(price))
+m + geom_histogram(aes(fill=cut))
+</code></pre>
+
+<ul>
+<li>note that plots can be built up <em>incrementally</em></li>
+<li>&quot;Geoms, short for geometric objects, describe the type of plot you will produce.&quot;</li>
+<li>geom names always begin with <code>geom_</code></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-14" style="background:;">
+  <hgroup>
+    <h3>Scatterplots</h3>
+  </hgroup>
+  <article data-timings="">
+    <p>Note: There&#39;s no &quot;scatterplot&quot; function. Use <code>geom_point</code>.</p>
+
+<pre><code class="r">ggplot(diamonds, aes(price, carat)) + geom_point()
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-6-1.png" alt="plot of chunk unnamed-chunk-6"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-15" style="background:;">
+  <hgroup>
+    <h3>Log scales</h3>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">ggplot(diamonds, aes(price, carat)) + geom_point() + scale_x_log10()
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-7-1.png" alt="plot of chunk unnamed-chunk-7"> </p>
+
+<p>Scales begin with <code>scale_</code>, and are not only for continuous variables: also <code>datetime</code>, <code>shape</code>, <code>colour</code>, etc</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-16" style="background:;">
+  <hgroup>
+    <h3>Adding factors</h3>
+  </hgroup>
+  <article data-timings="">
+    <p>Similar to histogram</p>
+
+<pre><code class="r">ggplot(diamonds, aes(price, carat)) + geom_point(aes(colour=color, shape=cut))
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-8-1.png" alt="plot of chunk unnamed-chunk-8"> </p>
+
+<p>Note the legend for each mapping!</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-17" style="background:;">
+  <hgroup>
+    <h3>Overview of components</h3>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><code>geom_*</code> : Geoms, short for geometric objects, describe the type of plot you will produce.</li>
+<li><code>stat_*</code>: Statistical transformations transform your data before plotting</li>
+<li><code>scale_*</code>: Scales control the mapping between data and aesthetics.</li>
+<li><code>facet_*</code>: Facets display subsets of the dataset in different panels.</li>
+<li><code>coord_*</code>: Coordinate systems adjust the mapping from coordinates to the 2d plane of the computer screen.</li>
+</ul>
+
+<p>And a few others...</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-18" style="background:;">
+  <hgroup>
+    <h3>Problem: overplotting, approach 1a</h3>
+  </hgroup>
+  <article data-timings="">
+    <p>Try lowering opacity</p>
+
+<pre><code class="r">ggplot(diamonds, aes(price, carat)) + geom_point(alpha=0.1)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-9-1.png" alt="plot of chunk unnamed-chunk-9"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-19" style="background:;">
+  <hgroup>
+    <h3>Problem: overplotting, approach 1b</h3>
+  </hgroup>
+  <article data-timings="">
+    <p>Try mapping the inverse of a variable to opacity.</p>
+
+<pre><code class="r">ggplot(diamonds, aes(price, carat)) + geom_point(aes(alpha=1/carat))
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-10-1.png" alt="plot of chunk unnamed-chunk-10"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-20" style="background:;">
+  <hgroup>
+    <h3>Problem: overplotting, approach 2</h3>
+  </hgroup>
+  <article data-timings="">
+    <p>Shake the points around a little bit.</p>
+
+<pre><code class="r">ggplot(diamonds, aes(price, carat)) + geom_jitter()
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-11-1.png" alt="plot of chunk unnamed-chunk-11"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-21" style="background:;">
+  <hgroup>
+    <h3>Problem: overplotting, approach 3</h3>
+  </hgroup>
+  <article data-timings="">
+    <p>Bin into hexagons!</p>
+
+<pre><code class="r">library(hexbin)
+ggplot(diamonds, aes(price, carat)) + geom_hex()
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-12-1.png" alt="plot of chunk unnamed-chunk-12"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-22" style="background:;">
+  <hgroup>
+    <h3>Problem: overplotting, approach 4</h3>
+  </hgroup>
+  <article data-timings="">
+    <p>Smooth with a 2d density</p>
+
+<pre><code class="r">ggplot(diamonds, aes(price, carat)) + stat_density2d()
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-13-1.png" alt="plot of chunk unnamed-chunk-13"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-23" style="background:;">
+  <hgroup>
+    <h3>Something completely different: map!</h3>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">library(maps)
+states &lt;- map_data(&quot;state&quot;)
+ggplot(states) + geom_polygon(aes(x=long, y=lat, group = group), colour=&quot;white&quot;)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-14-1.png" alt="plot of chunk unnamed-chunk-14"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-24" style="background:;">
+  <hgroup>
+    <h3>The world is your oyster</h3>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">ggplot(map_data(&quot;world&quot;)) + geom_polygon(aes(x=long, y=lat, group = group), colour=&quot;white&quot;)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-15-1.png" alt="plot of chunk unnamed-chunk-15"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-25" style="background:;">
+  <hgroup>
+    <h3>What&#39;s the point?</h3>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">ucs &lt;- data.frame(lat=c(37.870007, 33.64945), long=c(-122.270501, -117.845707))
+m &lt;- ggplot(map_data(&quot;state&quot;), aes(x=long, y=lat)) + geom_polygon(aes(group=group))
+m + geom_point(data=ucs, colour=&quot;red&quot;, size=5)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-16-1.png" alt="plot of chunk unnamed-chunk-16"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-26" style="background:;">
+  <hgroup>
+    <h3>FYI</h3>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>easy to add legend titles, axis labels, etc</li>
+<li><code>ggsave</code> function will save the plot to an image (or can just save via Rstudio)</li>
+<li><code>+ theme_bw()</code> will create a plot more suitable for printing</li>
+<li>pie charts are possible but please do not make them</li>
+<li>the <code>qplot</code> function is available as a more concise option</li>
+<li>there are many packages that extend ggplot2&#39;s functionality!</li>
+<li>e.g. <code>bdscale</code>, <code>GGally</code>, <code>xkcd</code>, <code>ggmap</code></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='What is R?'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='vs. other languages'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='R is probably best when...'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Downsides to R'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='R vs. Excel'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='Summary: why use R?'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='Information Visualization'>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='Hello, ggplot2'>
+         8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='First ggplot2: histogram'>
+         9
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title='Gotchas'>
+         10
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title='Now make it fancier'>
+         11
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title='Facets are an alternative'>
+         12
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title='Let&#39;s pause for a moment'>
+         13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title='Scatterplots'>
+         14
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=15 title='Log scales'>
+         15
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=16 title='Adding factors'>
+         16
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=17 title='Overview of components'>
+         17
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=18 title='Problem: overplotting, approach 1a'>
+         18
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=19 title='Problem: overplotting, approach 1b'>
+         19
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=20 title='Problem: overplotting, approach 2'>
+         20
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=21 title='Problem: overplotting, approach 3'>
+         21
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=22 title='Problem: overplotting, approach 4'>
+         22
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=23 title='Something completely different: map!'>
+         23
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=24 title='The world is your oyster'>
+         24
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=25 title='What&#39;s the point?'>
+         25
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=26 title='FYI'>
+         26
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
